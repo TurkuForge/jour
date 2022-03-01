@@ -4,6 +4,9 @@
   "compilerOptions": {
     "composite": true,
     "lib": [],
-    "types": ["node", "jsdom"]
+    "typeRoots": [
+      "node_modules/@types",
+    ],
+    "types": ["node", "jsdom", "gapi", "gapi.auth2"]
   }
 }
