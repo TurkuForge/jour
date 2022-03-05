@@ -1,29 +1,22 @@
-name: Push To Production
+name: Deploy Jour
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build-production:
-    container: node:16
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: n1hility/cancel-previous-runs@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup up git user
-        run: |
-          git config --global user.name '${{ github.actor }}'
-          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
-          git fetch --all
-      - name: Build
+      - name: Build Jour
         run: |
           npm ci
           npm run build
-      - name: Publish
-        run: |
-          git add docs --force
-          git commit -m 'Committed build: ${{ github.sha }}'
-          git push -f origin HEAD:gh-pages
+      - name: Deploy Jour
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          user_name: '${{ github.actor }}'
+          user_email: '${{ github.actor }}@users.noreply.github.com'
