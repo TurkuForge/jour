@@ -26,4 +26,4 @@ jobs:
         run: |
           git add docs --force
           git commit -m 'Committed build: ${{ github.sha }}'
-          git push -f gh-pages
+          git push -f origin HEAD:gh-pages
