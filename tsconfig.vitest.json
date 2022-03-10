@@ -6,7 +6,8 @@
     "lib": [],
     "typeRoots": [
       "node_modules/@types",
+      "src/types"
     ],
-    "types": ["node", "jsdom", "gapi", "gapi.auth2"]
+    "types": ["node", "jsdom"]
   }
 }
